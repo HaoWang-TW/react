@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, hashHistory } from 'react-router'
-import { Menu, Dropdown, Button, Modal, message } from 'antd'
+import { Menu, Dropdown, Button, Modal } from 'antd'
 
 const confirm = Modal.confirm
 
@@ -9,8 +9,7 @@ const confirm = Modal.confirm
   (state, props) => ({ config: state.config })
 )
 export default class Header extends Component {
-  // 初始化页面常量 绑定事件方法
-  constructor(props, context) {
+  constructor(props) {
     super(props)
     this.state = {
       loading: false,
@@ -30,23 +29,12 @@ export default class Header extends Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-  // 登出
   handleLogout() {
-    const { config } = this.props
-    const self = this
     confirm({
       title: '提示',
       content: '确认退出登录吗？',
       onOk() {
-        // self.props.dispatch(fetchLogout({}, (result) => {
-        //   // console.log(result)
-        //   if (result.status == 1) {
-        //     config.staff = {}
-        //     hashHistory.push('/login')
-        //   } else {
-        //     message.error(result.msg)
-        //   }
-        // }))
+        // TODO do something after logout here.
         hashHistory.push('/login')
       },
     })
@@ -74,7 +62,7 @@ export default class Header extends Component {
           <div className="navbar-header">
             <Link to={'/'} className="navbar-brand">
               <div className="brand-title">
-                <span className="brand-text">肚皮</span>
+                <span className="brand-text">后 台</span>
               </div>
             </Link>
           </div>
